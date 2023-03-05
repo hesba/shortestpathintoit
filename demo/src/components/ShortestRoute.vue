@@ -20,28 +20,6 @@ const durations = {
   X: { A: 551.6, B: 462.6, C: 610.1, D: 236.9, E: 315.8, X: 0 },
 };
 
-const fastestRoute = allRoutes.reduce((previous, current) => {
-  return current.duration < previous.duration ? current : previous;
-});
-
-onMounted(() => {
-  console.log({
-    A: "Mäntytie 7",
-    B: "Urheilukatu 23",
-    C: "Somerontie 1",
-    D: "Museokatu 23",
-    E: "Näkinkuja 6",
-    X: "Toimintakeidas",
-  });
-  console.log("Customers wishes for the route: ", {
-    customer1: "A -> B -> X",
-    customer2: "C -> D -> X",
-    customer3: "E -> X",
-  });
-  console.log("All possible routes: ", allRoutes);
-  console.log("Fastest route:", fastestRoute);
-});
-
 const allRoutes = [
   {
     route: "AB CE DX",
@@ -321,4 +299,26 @@ const allRoutes = [
       durations.B.X,
   },
 ];
+
+const fastestRoute = allRoutes.reduce((previous, current) => {
+  return current.duration < previous.duration ? current : previous;
+});
+
+onMounted(() => {
+  console.log({
+    A: "Mäntytie 7",
+    B: "Urheilukatu 23",
+    C: "Somerontie 1",
+    D: "Museokatu 23",
+    E: "Näkinkuja 6",
+    X: "Toimintakeidas",
+  });
+  console.log("Customers wishes for the route: ", {
+    customer1: "A -> B -> X",
+    customer2: "C -> D -> X",
+    customer3: "E -> X",
+  });
+  console.log("All possible routes: ", allRoutes);
+  console.log("Fastest route:", fastestRoute);
+});
 </script>
