@@ -1,3 +1,13 @@
+<template>
+  <div>
+    <h2>Fastest route is:</h2>
+    Mäntytie 7 -> Urheilukatu 23 -> Somerotie 1 -> Näkinkuja 6 -> Museokatu 23
+    -> Toimintakeidas
+
+    <h4>Total time: {{ fastestRoute.duration }}</h4>
+  </div>
+</template>
+
 <script setup>
 import { onMounted } from "vue";
 
@@ -9,6 +19,28 @@ const durations = {
   E: { A: 650.2, B: 485, C: 376.1, D: 496.2, E: 0, X: 328.9 },
   X: { A: 551.6, B: 462.6, C: 610.1, D: 236.9, E: 315.8, X: 0 },
 };
+
+const fastestRoute = allRoutes.reduce((previous, current) => {
+  return current.duration < previous.duration ? current : previous;
+});
+
+onMounted(() => {
+  console.log({
+    A: "Mäntytie 7",
+    B: "Urheilukatu 23",
+    C: "Somerontie 1",
+    D: "Museokatu 23",
+    E: "Näkinkuja 6",
+    X: "Toimintakeidas",
+  });
+  console.log("Customers wishes for the route: ", {
+    customer1: "A -> B -> X",
+    customer2: "C -> D -> X",
+    customer3: "E -> X",
+  });
+  console.log("All possible routes: ", allRoutes);
+  console.log("Fastest route:", fastestRoute);
+});
 
 const allRoutes = [
   {
@@ -289,35 +321,4 @@ const allRoutes = [
       durations.B.X,
   },
 ];
-
-const fastestRoute = allRoutes.reduce((previous, current) => {
-  return current.duration < previous.duration ? current : previous;
-});
-
-onMounted(() => {
-  console.log({
-    A: "Mäntytie 7",
-    B: "Urheilukatu 23",
-    C: "Somerontie 1",
-    D: "Museokatu 23",
-    E: "Näkinkuja 6",
-    X: "Toimintakeidas",
-  });
-  console.log("Customers wishes for the route: ", {
-    customer1: "A -> B -> X",
-    customer2: "C -> D -> X",
-    customer3: "E -> X",
-  });
-  console.log("All possible routes: ", allRoutes);
-  console.log("Fastest route:", fastestRoute);
-});
 </script>
-<template>
-  <div>
-    <h2>Fastest route is:</h2>
-    Mäntytie 7 -> Urheilukatu 23 -> Somerotie 1 -> Näkinkuja 6 -> Museokatu 23
-    -> Toimintakeidas
-
-    <h4>Total time: {{ fastestRoute.duration }}</h4>
-  </div>
-</template>
